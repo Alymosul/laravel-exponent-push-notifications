@@ -214,6 +214,7 @@ class ExpoMessage
             'data'      => $this->jsonData,
         ];
         $this->channelId ? $data['channelId'] = $this->channelId : null;
+        
         return $data;
     }
 }
