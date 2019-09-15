@@ -47,7 +47,7 @@ class ExpoMessage
      *
      * @var string
      */
-    protected $channelId = 'Default';
+    protected $channelId = null;
 
     /**
      * The json data attached to the message.
@@ -205,14 +205,15 @@ class ExpoMessage
      */
     public function toArray()
     {
-        return [
+        $data = [
             'title'     =>  $this->title,
             'body'      =>  $this->body,
             'sound'     =>  $this->sound,
             'badge'     =>  $this->badge,
             'ttl'       =>  $this->ttl,
-            'channelId' =>  $this->channelId,
             'data'      => $this->jsonData,
         ];
+        $this->channelId ? $data['channelId'] = $this->channelId : null;
+        return $data;
     }
 }
