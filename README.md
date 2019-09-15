@@ -78,12 +78,23 @@ return [
 ## Usage
 
 ``` php
+php artisan make:notification ExpoNotification
+```
+App\Notifications\ExpoNotification
+``` php
 use NotificationChannels\ExpoPushNotifications\ExpoChannel;
 use NotificationChannels\ExpoPushNotifications\ExpoMessage;
 use Illuminate\Notifications\Notification;
 
-class AccountApproved extends Notification
+class ExpoNotification extends Notification
 {
+    private $message;
+    
+    public function __construct($message)
+    {
+        $this->message = $message;
+    }
+
     public function via($notifiable)
     {
         return [ExpoChannel::class];
@@ -92,21 +103,46 @@ class AccountApproved extends Notification
     public function toExpoPush($notifiable)
     {
         return ExpoMessage::create()
-            ->badge(1)
+            ->badge($this->message['badge'])
             ->enableSound()
-            ->body("Your {$notifiable->service} account was approved!");
+            ->title($this->message['title'])
+            ->body($this->message['body']);
     }
 }
 ```
+Subscribe Apis (To Save And Delete Auth Users EXPO PUSH TOKEN To Database)
+``` php
+[POST] api/exponent/devices/subscribe    :prameters[ expo_token ]
+[POST] api/exponent/devices/unsubscribe  :prameters[ expo_token ]
+```
+At Any HTTP Controller
+``` php
+use App\User;
+use Notification;
+use App\Notifications\ExpoNotification;
 
+
+public function index(){
+    $user = User::find(1);
+    $details = [
+        'body' => 'This is first push notification from my app',
+        'badge'=> 1,
+        'title'=> 'First Notification'
+    ];   
+    Notification::send($user, new ExpoNotification($details));
+}
+        
+```        
 ### Available Message methods
 
 A list of all available options
+- `title('')`: Accepts a string value for the title.
 - `body('')`: Accepts a string value for the body.
 - `enableSound()`: Enables the notification sound.
 - `disableSound()`: Mutes the notification sound.
 - `badge(1)`: Accepts an integer value for the badge.
 - `ttl(60)`: Accepts an integer value for the time to live.
+- `setChannelId('')`: Accepts a string value for notification channel (Android Only).
 
 ### Managing Recipients
 
