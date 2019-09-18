@@ -214,9 +214,8 @@ class ExpoMessage
             'data'      => $this->jsonData,
         ];
         
-        if(!is_null($this->channelId))
-        {
-            $data['channelId'] = $this->channelId;
+        if (! is_null($this->channelId)) {
+             $data['channelId'] = $this->channelId;
         }
         
         return $data;
