@@ -213,7 +213,11 @@ class ExpoMessage
             'ttl'       =>  $this->ttl,
             'data'      => $this->jsonData,
         ];
-        $this->channelId ? $data['channelId'] = $this->channelId : null;
+        
+        if(!is_null($this->channelId))
+        {
+            $data['channelId'] = $this->channelId;
+        }
         
         return $data;
     }
