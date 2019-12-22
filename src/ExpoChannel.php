@@ -48,10 +48,16 @@ class ExpoChannel
         $interest = $notifiable->routeNotificationFor('ExpoPushNotifications')
             ?: $this->interestName($notifiable);
 
+        $ssl_params = [
+            "CURLOPT_SSL_VERIFYHOST" => config('exponent-push-notifications.ssl.verify_host', false),
+            "CURLOPT_SSL_VERIFYPEER" => config('exponent-push-notifications.ssl.verify_peer', false),
+        ];
+
         try {
             $this->expo->notify(
                 $interest,
                 $notification->toExpoPush($notifiable)->toArray(),
+                $ssl_params,
                 true
             );
         } catch (ExpoException $e) {

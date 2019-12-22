@@ -14,4 +14,8 @@ return [
             'table_name' => 'exponent_push_notification_interests',
         ],
     ],
+    'ssl' => [
+        "verify_host" => false,
+        "verify_peer" => false,
+    ]
 ];
