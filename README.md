@@ -25,7 +25,7 @@
 You can install the package via composer:
 
 ```bash
-composer require alymosul/laravel-exponent-push-notifications
+composer require tomasz/laravel-exponent-push-notifications
 ```
 
 If you are using Laravel 5.5 or higher this package will automatically register itself using [Package Discovery](https://laravel.com/docs/5.5/packages#package-discovery). For older versions of Laravel you must install the service provider manually:
