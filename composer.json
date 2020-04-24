@@ -1,18 +1,18 @@
 {
-    "name": "alymosul/laravel-exponent-push-notifications",
+    "name": "tomasz/laravel-exponent-push-notifications",
     "description": "Exponent push notifications driver for laravel",
     "homepage": "https://github.com/alymosul/laravel-exponent-push-notifications",
     "license": "MIT",
     "authors": [
         {
-            "name": "Aly Suleiman",
-            "email": "alymosul@gmail.com",
+            "name": "Tomasz Niedzielski",
+            "email": "tomasz9531@gmail.com",
             "role": "Developer"
         }
     ],
     "require": {
         "php": "^7.1.3",
-        "alymosul/exponent-server-sdk-php": "1.1.*",
+        "tomasz/exponent-server-sdk-php": "1.1.*",
         "laravel/framework": "^5.6 | ^6.0 | ^7.0"
     },
     "require-dev": {
