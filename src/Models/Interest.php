@@ -25,6 +25,9 @@ class Interest extends Model
      *
      * @var array
      */
+
+    public $incrementing = false;
+
     protected $fillable = [
         'key',
         'value',
